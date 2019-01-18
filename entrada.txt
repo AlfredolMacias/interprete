@@ -1,4 +1,4 @@
-Programa nombre1
+Programa  compilador1
 Inicio
 EliminarCara(Caro)
 Fin
