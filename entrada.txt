@@ -1,0 +1,4 @@
+Programa nombre1
+Inicio
+EliminarCara(Caro)
+Fin

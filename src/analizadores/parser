@@ -1,0 +1,35 @@
+package analizadores;
+import java.io.*;
+import java_cup.runtime.*;
+
+
+parser code
+{:
+    public static void main(String args[]) throws Exception{
+    new parser(new Yylex(new FileInputStream(args[0]))).parse();
+    //new parser(new Yylex(System.in)).parse();
+}
+
+public void syntax_error(Symbol s){
+    report_error("Error de sintaxis. Linea " + s.left +
+    " Columna: " + (s.right+1) + ". Texto: \"" + s.value + "\"", null);
+}
+
+:}
+
+terminal String COMA, PARIZQ, LETRA, PARDER, PROGRAMA, INICIO, FIN, DIBUJARCARA, ELIMINARCARA, DORMIR, CAMBIARMODO, ID;
+terminal integer NUMERO;
+
+non terminal INICIAR, SENTENCIA, ARCHIVO;
+
+INICIAR::= ARCHIVO;
+
+ARCHIVO::= PROGRAMA ID INICIO SENTENCIA FIN;
+
+SENTENCIA::= DIBUJARCARA PARIZQ NUMERO COMA NUMERO COMA NUMERO COMA LETRA COMA LETRA PARDER 
+            | DORMIR PARIZQ NUMERO PARDER 
+            | ELIMINARCARA PARIZQ LETRA PARDER
+            | CAMBIARMODO PARIZQ LETRA COMA LETRA PARDER;
+            
+
+
