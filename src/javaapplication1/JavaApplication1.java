@@ -33,9 +33,7 @@ public class JavaApplication1 {
         //j.setText();
     }
     public static void DibujarCara(){
-        if(correcto){
             System.out.println("HOLA; DUBJU");
-        }
     }
     public static void Dormir(){
         if(correcto){
@@ -67,8 +65,8 @@ public class JavaApplication1 {
             ThisScanner = new Yylex1(new FileReader(path));
             lex = true;
             ThisParser = new parser(ThisScanner);
-            cup = true;
             ThisParser.parse();
+            cup = true;
         }catch(Exception e){
             //frame.error("Error de scaneo" + e.toString());
             System.out.println("Error de scaneo" + e);
@@ -88,25 +86,22 @@ public class JavaApplication1 {
     }
     public void semantico(){
         if(lex && cup){
-            error = "Scaneo Completo";
-            System.out.println("Semantico");
-        String path;
-        Yylex ThisScanner;
-        parser ThisParser;
-        path = "entrada.txt";
-        try{
-           ThisScanner = new Yylex(new FileReader(path));
-           ThisParser = new parser(ThisScanner);
-           ThisParser.parse();
-            
-        }catch(Exception e){
-            //frame.error("Error de scaneo" + e.toString());
-            System.out.println("Error de scaneo" + e);
-            //error = "Error de scaeno " + e;
-            correcto = false;
-        }
-        }
-        
+            error = "Scaneo Completo";            
+            String path;
+            Yylex ThisScanner1;
+            parser ThisParser1;
+            path = "entrada.txt";
+            try{
+               ThisScanner1 = new Yylex(new FileReader(path));
+               ThisParser1 = new parser(ThisScanner1);
+               ThisParser1.parse();
+            }catch(Exception e){
+                //frame.error("Error de scaneo" + e.toString());
+                System.out.println("Error de scaneo" + e);
+                //error = "Error de scaeno " + e;
+                correcto = false;
+            }
+        }    
     }
     public static void main(String[] args) {
         // TODO code application logic here

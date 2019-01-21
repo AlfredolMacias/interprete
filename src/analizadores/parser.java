@@ -5,6 +5,7 @@
 
 package analizadores;
 
+import JavaApplication1.JavaApplication1;
 import java.io.*;
 import java_cup.runtime.*;
 import java_cup.runtime.XMLElement;
@@ -71,6 +72,9 @@ public class parser extends java_cup.runtime.lr_parser {
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
 
+  void imprimir(String j){
+            JavaApplication1.cambiarError(j);
+        }
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
@@ -132,8 +136,11 @@ public class parser extends java_cup.runtime.lr_parser {
 }
 
 public void syntax_error(Symbol s){
+    imprimir("Error de sintaxis. Linea " + s.left +
+    " Columna: " + (s.right+1) + ". Texto: \"" + s.value + "\"");
     report_error("Error de sintaxis. Linea " + s.left +
     " Columna: " + (s.right+1) + ". Texto: \"" + s.value + "\"", null);
+    JavaApplication1.VerSin();
 }
 
 

@@ -1,6 +1,5 @@
 Programa ndk1
 Inicio
-DibujarCara(2,2,2,mak,ks)
-Dormir(2)
-EliminarCara(mas)
+DibujarCara(2,2,2,dan,dm)
+EliminarCara(nd)
 Fin
