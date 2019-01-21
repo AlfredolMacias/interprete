@@ -419,15 +419,18 @@ public class Yylex implements java_cup.runtime.Scanner {
 					case -15:
 						break;
 					case 15:
-						{return new Symbol(sym.CAMBIARMODO,yyline,yychar, yytext());}
+						{JavaApplication1.CambiarModo();
+                                                    return new Symbol(sym.CAMBIARMODO,yyline,yychar, yytext());}
 					case -16:
 						break;
 					case 16:
-						{return new Symbol(sym.DIBUJARCARA,yyline,yychar, yytext());}
+						{JavaApplication1.DibujarCara();
+                                                    return new Symbol(sym.DIBUJARCARA,yyline,yychar, yytext());}
 					case -17:
 						break;
 					case 17:
-						{return new Symbol(sym.ELIMINARCARA,yyline,yychar, yytext());}
+						{ JavaApplication1.EliminarCara();
+                                                    return new Symbol(sym.ELIMINARCARA,yyline,yychar, yytext());}
 					case -18:
 						break;
 					case 18:

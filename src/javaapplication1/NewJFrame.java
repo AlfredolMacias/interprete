@@ -147,9 +147,9 @@ public class NewJFrame extends javax.swing.JFrame {
     JavaApplication1 j = new JavaApplication1();
     void setText(){
         String error = j.error();
-        System.out.println("ERROR: " + error);
+        //System.out.println("ERROR: " + error);
         //Thread.sleep(3000);
-        textArea1.append(error + " \n");
+        textArea1.setText(error + " \n");
         
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

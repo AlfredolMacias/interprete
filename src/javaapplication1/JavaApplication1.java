@@ -65,7 +65,9 @@ public class JavaApplication1 {
         path = "entrada.txt";
         try{
             ThisScanner = new Yylex1(new FileReader(path));
+            lex = true;
             ThisParser = new parser(ThisScanner);
+            cup = true;
             ThisParser.parse();
         }catch(Exception e){
             //frame.error("Error de scaneo" + e.toString());
@@ -90,10 +92,12 @@ public class JavaApplication1 {
             System.out.println("Semantico");
         String path;
         Yylex ThisScanner;
+        parser ThisParser;
         path = "entrada.txt";
         try{
-            ThisScanner = new Yylex(new FileReader(path));
-            //error = "Scaneo completo";
+           ThisScanner = new Yylex(new FileReader(path));
+           ThisParser = new parser(ThisScanner);
+           ThisParser.parse();
             
         }catch(Exception e){
             //frame.error("Error de scaneo" + e.toString());
