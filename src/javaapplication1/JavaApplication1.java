@@ -55,8 +55,8 @@ public class JavaApplication1 {
     JavaApplication1(){
         
     }
-    boolean lex = false;
-    boolean cup = false;
+    static boolean lex = true;
+    static boolean cup = true;
     JavaApplication1( int ed){
         NewJFrame frame = new NewJFrame();
         String path;
@@ -65,32 +65,35 @@ public class JavaApplication1 {
         path = "entrada.txt";
         try{
             ThisScanner = new Yylex1(new FileReader(path));
-            lex = true;
             ThisParser = new parser(ThisScanner);
-            cup = true;
             ThisParser.parse();
-            
-            //error = "Scaneo completo";
         }catch(Exception e){
             //frame.error("Error de scaneo" + e.toString());
             System.out.println("Error de scaneo" + e);
             //error = "Error de scaeno " + e;
             correcto = false;
         }
-        if(lex && cup){
-            semantico();
-            System.out.println("HOLA, ES CORRECTO");
-        }
+        semantico();
     }
     
+    public static void VerLex(){
+        System.out.println("HolA Lex ");
+        lex = false;
+    }
+    public static void VerSin(){
+        System.out.println("HolA Sin");
+        cup = false;
+    }
     public void semantico(){
-        System.out.println("Semantico");
+        if(lex && cup){
+            error = "Scaneo Completo";
+            System.out.println("Semantico");
         String path;
         Yylex ThisScanner;
         path = "entrada.txt";
         try{
             ThisScanner = new Yylex(new FileReader(path));
-            error = "Scaneo completo";
+            //error = "Scaneo completo";
             
         }catch(Exception e){
             //frame.error("Error de scaneo" + e.toString());
@@ -98,6 +101,8 @@ public class JavaApplication1 {
             //error = "Error de scaeno " + e;
             correcto = false;
         }
+        }
+        
     }
     public static void main(String[] args) {
         // TODO code application logic here

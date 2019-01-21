@@ -132,6 +132,7 @@ public void syntax_error(Symbol s){
     " Columna: " + (s.right+1) + ". Texto: \"" + s.value + "\"", null);
     imprimir("Error de sintaxis. Linea " + s.left +
     " Columna: " + (s.right+1) + ". Texto: \"" + s.value + "\"");
+    JavaApplication1.VerSin();
     
 }
 

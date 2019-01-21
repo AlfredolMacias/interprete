@@ -394,6 +394,7 @@ public class Yylex1 implements java_cup.runtime.Scanner {
                                                     ",en la linea: "+yyline+", en la columna: "+yychar);
     System.out.println("Este es un error lexico: "+yytext()+
     ",en la linea: "+yyline+", en la columna: "+yychar);
+    JavaApplication1.VerLex();
 }
 					case -10:
 						break;

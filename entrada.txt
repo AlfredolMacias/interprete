@@ -1,5 +1,5 @@
 Programa ndk1
 Inicio
-$
-Dormir(3)
+#
+Dormir(2
 Fin
