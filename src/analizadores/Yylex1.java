@@ -3,7 +3,7 @@ import JavaApplication1.JavaApplication1;
 import java_cup.runtime.Symbol; 
 
 
-public class Yylex implements java_cup.runtime.Scanner {
+public class Yylex1 implements java_cup.runtime.Scanner {
 	private final int YY_BUFFER_SIZE = 512;
 	private final int YY_F = -1;
 	private final int YY_NO_STATE = -1;
@@ -24,7 +24,10 @@ public class Yylex implements java_cup.runtime.Scanner {
 	private boolean yy_at_bol;
 	private int yy_lexical_state;
 
-	public Yylex (java.io.Reader reader) {
+        void imprimir(String j){
+            JavaApplication1.cambiarError(j);
+        }
+	public Yylex1 (java.io.Reader reader) {
 		this ();
 		if (null == reader) {
 			throw (new Error("Error: Bad input stream initializer."));
@@ -32,7 +35,7 @@ public class Yylex implements java_cup.runtime.Scanner {
 		yy_reader = new java.io.BufferedReader(reader);
 	}
 
-	public Yylex (java.io.InputStream instream) {
+	public Yylex1 (java.io.InputStream instream) {
 		this ();
 		if (null == instream) {
 			throw (new Error("Error: Bad input stream initializer."));
@@ -40,7 +43,7 @@ public class Yylex implements java_cup.runtime.Scanner {
 		yy_reader = new java.io.BufferedReader(new java.io.InputStreamReader(instream));
 	}
 
-	private Yylex () {
+	private Yylex1 () {
 		yy_buffer = new char[YY_BUFFER_SIZE];
 		yy_buffer_read = 0;
 		yy_buffer_index = 0;
@@ -60,9 +63,6 @@ public class Yylex implements java_cup.runtime.Scanner {
 	private final int yy_state_dtrans[] = {
 		0
 	};
-        void imprimir(String j){
-            JavaApplication1.cambiarError(j);
-        }
 	private void yybegin (int state) {
 		yy_lexical_state = state;
 	}
@@ -392,9 +392,9 @@ public class Yylex implements java_cup.runtime.Scanner {
 						{
                                                     imprimir("Este es un error lexico: "+yytext()+
                                                     ",en la linea: "+yyline+", en la columna: "+yychar);
-                                                    System.out.println("Este es un error lexico: "+yytext()+
-                                                    ",en la linea: "+yyline+", en la columna: "+yychar);
-                                                 }
+    System.out.println("Este es un error lexico: "+yytext()+
+    ",en la linea: "+yyline+", en la columna: "+yychar);
+}
 					case -10:
 						break;
 					case 10:
@@ -410,8 +410,7 @@ public class Yylex implements java_cup.runtime.Scanner {
 					case -13:
 						break;
 					case 13:
-						{ JavaApplication1.Dormir();
-                                                    return new Symbol(sym.DORMIR,yyline,yychar, yytext());}
+						{return new Symbol(sym.DORMIR,yyline,yychar, yytext());}
 					case -14:
 						break;
 					case 14:
@@ -645,3 +644,4 @@ public class Yylex implements java_cup.runtime.Scanner {
 		}
 	}
 }
+

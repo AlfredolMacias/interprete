@@ -1,5 +1,4 @@
 Programa ndk1
 Inicio
-$
 Dormir(3)
 Fin

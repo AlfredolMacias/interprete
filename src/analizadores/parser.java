@@ -5,6 +5,8 @@
 
 package analizadores;
 
+import JavaApplication1.JavaApplication1;
+import JavaApplication1.NewJFrame;
 import java.io.*;
 import java_cup.runtime.*;
 import java_cup.runtime.XMLElement;
@@ -17,6 +19,9 @@ public class parser extends java_cup.runtime.lr_parser {
  public final Class getSymbolContainer() {
     return sym.class;
 }
+ void imprimir(String imp){
+     JavaApplication1.cambiarError(imp);
+ }
 
   /** Default constructor. */
   @Deprecated
@@ -115,17 +120,19 @@ public class parser extends java_cup.runtime.lr_parser {
 
   /** <code>error</code> Symbol index. */
   public int error_sym() {return 1;}
-
-
-
+  
     public static void main(String args[]) throws Exception{
-    new parser(new Yylex(new FileInputStream(args[0]))).parse();
+    new parser(new Yylex1(new FileInputStream(args[0]))).parse();
     //new parser(new Yylex(System.in)).parse();
 }
 
 public void syntax_error(Symbol s){
+    //JavaApplication1 java = new JavaApplication1();
     report_error("Error de sintaxis. Linea " + s.left +
     " Columna: " + (s.right+1) + ". Texto: \"" + s.value + "\"", null);
+    imprimir("Error de sintaxis. Linea " + s.left +
+    " Columna: " + (s.right+1) + ". Texto: \"" + s.value + "\"");
+    
 }
 
 
