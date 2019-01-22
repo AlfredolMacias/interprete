@@ -9,7 +9,6 @@ package analizadores;
 public class sym {
   /* terminals */
   public static final int COMA = 2;
-  public static final int PROGRAMA = 6;
   public static final int DORMIR = 11;
   public static final int LETRA = 4;
   public static final int INICIO = 7;
@@ -21,6 +20,7 @@ public class sym {
   public static final int error = 1;
   public static final int DIBUJARCARA = 9;
   public static final int ELIMINARCARA = 10;
+  public static final int Programa = 6;
   public static final int PARDER = 5;
   public static final int CAMBIARMODO = 12;
   public static final String[] terminalNames = new String[] {
@@ -30,7 +30,7 @@ public class sym {
   "PARIZQ",
   "LETRA",
   "PARDER",
-  "PROGRAMA",
+  "Programa",
   "INICIO",
   "FIN",
   "DIBUJARCARA",
