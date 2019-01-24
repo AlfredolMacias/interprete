@@ -9,6 +9,7 @@ import java_cup.runtime.Symbol;
 %cup 
 %unicode
 
+
 %init{ 
     yyline = 1; 
     yychar = 1; 
@@ -20,23 +21,31 @@ id = {letra}({letra}|{digito})*
 espacio = " "
 
 
+
+
 %%
 
 "," {return new Symbol(sym.COMA,yyline,yychar, yytext());} 
 "(" {return new Symbol(sym.PARIZQ,yyline,yychar, yytext());} 
 ")" {return new Symbol(sym.PARDER,yyline,yychar, yytext());} 
-"Programa" {return new Symbol(sym.PROGRAMA,yyline,yychar, yytext());} 
+"Programa" {return new Symbol(sym.Programa,yyline,yychar, yytext());} 
 "Inicio" {return new Symbol(sym.INICIO,yyline,yychar, yytext());} 
 "Fin" {return new Symbol(sym.FIN,yyline,yychar, yytext());} 
 "DibujarCara" {return new Symbol(sym.DIBUJARCARA,yyline,yychar, yytext());} 
 "EliminarCara" {return new Symbol(sym.ELIMINARCARA,yyline,yychar, yytext());} 
 "Dormir" {return new Symbol(sym.DORMIR,yyline,yychar, yytext());} 
 "CambiarModo" {return new Symbol(sym.CAMBIARMODO,yyline,yychar, yytext());} 
+"feliz" {return new Symbol(sym.FELIZ,yyline,yychar, yytext());} 
+"enojada" {return new Symbol(sym.ENOJADA,yyline,yychar, yytext());} 
+"dormida" {return new Symbol(sym.DORMIDA,yyline,yychar, yytext());} 
+"triste" {return new Symbol(sym.TRISTE,yyline,yychar, yytext());} 
+"neutral" {return new Symbol(sym.NEUTRAL,yyline,yychar, yytext());} 
 {digito}+ {return new Symbol(sym.NUMERO,yyline,yychar, yytext());} 
 {letra}+ {return new Symbol(sym.LETRA,yyline,yychar, yytext());} 
 {id} {return new Symbol(sym.ID,yyline,yychar, yytext());} 
 [\t\r\n\f] {}
 {espacio} {}
+
  
 . {
     System.out.println("Este es un error lexico: "+yytext()+

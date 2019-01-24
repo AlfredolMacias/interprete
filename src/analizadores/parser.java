@@ -18,6 +18,9 @@ public class parser extends java_cup.runtime.lr_parser {
  public final Class getSymbolContainer() {
     return sym.class;
 }
+ private void imprimir(String j) {
+       JavaApplication1.cambiarError(j);
+    }
 
   /** Default constructor. */
   @Deprecated
@@ -33,10 +36,12 @@ public class parser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\013\000\002\002\003\000\002\002\004\000\002\005" +
+    "\000\020\000\002\002\003\000\002\002\004\000\002\005" +
     "\007\000\002\003\004\000\002\003\003\000\002\006\003" +
     "\000\002\006\003\000\002\004\016\000\002\004\006\000" +
-    "\002\004\006\000\002\004\010" });
+    "\002\004\006\000\002\004\010\000\002\007\003\000\002" +
+    "\007\003\000\002\007\003\000\002\007\003\000\002\007" +
+    "\003" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -44,53 +49,56 @@ public class parser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\047\000\004\010\006\001\002\000\004\002\001\001" +
-    "\002\000\004\002\051\001\002\000\006\006\010\017\007" +
-    "\001\002\000\006\004\ufffb\011\ufffb\001\002\000\006\004" +
-    "\ufffc\011\ufffc\001\002\000\004\011\012\001\002\000\012" +
-    "\013\020\014\017\015\015\016\013\001\002\000\004\005" +
-    "\044\001\002\000\014\012\ufffd\013\ufffd\014\ufffd\015\ufffd" +
-    "\016\ufffd\001\002\000\004\005\041\001\002\000\014\012" +
-    "\040\013\020\014\017\015\015\016\013\001\002\000\004" +
-    "\005\034\001\002\000\004\005\021\001\002\000\004\020" +
-    "\022\001\002\000\004\004\023\001\002\000\004\020\024" +
-    "\001\002\000\004\004\025\001\002\000\004\020\026\001" +
-    "\002\000\004\004\027\001\002\000\006\006\010\017\007" +
-    "\001\002\000\004\004\031\001\002\000\004\006\032\001" +
-    "\002\000\004\007\033\001\002\000\014\012\ufffa\013\ufffa" +
-    "\014\ufffa\015\ufffa\016\ufffa\001\002\000\004\006\035\001" +
-    "\002\000\004\007\036\001\002\000\014\012\ufff8\013\ufff8" +
-    "\014\ufff8\015\ufff8\016\ufff8\001\002\000\014\012\ufffe\013" +
-    "\ufffe\014\ufffe\015\ufffe\016\ufffe\001\002\000\004\002\uffff" +
-    "\001\002\000\004\020\042\001\002\000\004\007\043\001" +
-    "\002\000\014\012\ufff9\013\ufff9\014\ufff9\015\ufff9\016\ufff9" +
-    "\001\002\000\006\006\010\017\007\001\002\000\004\004" +
-    "\046\001\002\000\004\006\047\001\002\000\004\007\050" +
-    "\001\002\000\014\012\ufff7\013\ufff7\014\ufff7\015\ufff7\016" +
+    "\000\054\000\004\015\006\001\002\000\004\002\001\001" +
+    "\002\000\004\002\056\001\002\000\006\013\010\024\007" +
+    "\001\002\000\010\011\ufffb\014\ufffb\016\ufffb\001\002\000" +
+    "\010\011\ufffc\014\ufffc\016\ufffc\001\002\000\004\016\012" +
+    "\001\002\000\012\020\020\021\017\022\015\023\013\001" +
+    "\002\000\004\012\051\001\002\000\014\017\ufffd\020\ufffd" +
+    "\021\ufffd\022\ufffd\023\ufffd\001\002\000\004\012\046\001" +
+    "\002\000\014\017\045\020\020\021\017\022\015\023\013" +
+    "\001\002\000\004\012\041\001\002\000\004\012\021\001" +
+    "\002\000\004\025\022\001\002\000\004\011\023\001\002" +
+    "\000\004\025\024\001\002\000\004\011\025\001\002\000" +
+    "\004\025\026\001\002\000\004\011\027\001\002\000\006" +
+    "\013\010\024\007\001\002\000\004\011\031\001\002\000" +
+    "\014\004\033\005\034\006\032\007\036\010\037\001\002" +
+    "\000\004\014\ufff3\001\002\000\004\014\ufff4\001\002\000" +
+    "\004\014\ufff5\001\002\000\004\014\040\001\002\000\004" +
+    "\014\ufff2\001\002\000\004\014\ufff6\001\002\000\014\017" +
+    "\ufffa\020\ufffa\021\ufffa\022\ufffa\023\ufffa\001\002\000\006" +
+    "\013\010\024\007\001\002\000\004\014\043\001\002\000" +
+    "\014\017\ufff8\020\ufff8\021\ufff8\022\ufff8\023\ufff8\001\002" +
+    "\000\014\017\ufffe\020\ufffe\021\ufffe\022\ufffe\023\ufffe\001" +
+    "\002\000\004\002\uffff\001\002\000\004\025\047\001\002" +
+    "\000\004\014\050\001\002\000\014\017\ufff9\020\ufff9\021" +
+    "\ufff9\022\ufff9\023\ufff9\001\002\000\006\013\010\024\007" +
+    "\001\002\000\004\011\053\001\002\000\014\004\033\005" +
+    "\034\006\032\007\036\010\037\001\002\000\004\014\055" +
+    "\001\002\000\014\017\ufff7\020\ufff7\021\ufff7\022\ufff7\023" +
     "\ufff7\001\002\000\004\002\000\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
 
-  void imprimir(String j){
-            JavaApplication1.cambiarError(j);
-        }
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\047\000\006\002\004\005\003\001\001\000\002\001" +
+    "\000\054\000\006\002\004\005\003\001\001\000\002\001" +
     "\001\000\002\001\001\000\004\006\010\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\006\003" +
     "\015\004\013\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\004\004\036\001\001\000\002\001" +
+    "\000\002\001\001\000\004\004\043\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\004\006\027\001\001\000\002\001\001" +
+    "\000\004\007\034\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\004\006\041\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\004\006\044\001\001\000\002" +
-    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\002\001\001\000\004\006\051\001\001\000\002\001\001" +
+    "\000\004\007\053\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
@@ -136,10 +144,10 @@ public class parser extends java_cup.runtime.lr_parser {
 }
 
 public void syntax_error(Symbol s){
-    imprimir("Error de sintaxis. Linea " + s.left +
-    " Columna: " + (s.right+1) + ". Texto: \"" + s.value + "\"");
     report_error("Error de sintaxis. Linea " + s.left +
     " Columna: " + (s.right+1) + ". Texto: \"" + s.value + "\"", null);
+    imprimir("Error de sintaxis. Linea " + s.left +
+    " Columna: " + (s.right+1) + ". Texto: \"" + s.value + "\"");
     JavaApplication1.VerSin();
 }
 
@@ -193,7 +201,7 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 2: // ARCHIVO ::= PROGRAMA IDENTIFICADOR INICIO SENTENCIALIST FIN 
+          case 2: // ARCHIVO ::= Programa IDENTIFICADOR INICIO SENTENCIALIST FIN 
             {
               Object RESULT =null;
 
@@ -238,7 +246,7 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 7: // SENTENCIAPART ::= DIBUJARCARA PARIZQ NUMERO COMA NUMERO COMA NUMERO COMA IDENTIFICADOR COMA LETRA PARDER 
+          case 7: // SENTENCIAPART ::= DIBUJARCARA PARIZQ NUMERO COMA NUMERO COMA NUMERO COMA IDENTIFICADOR COMA MODO PARDER 
             {
               Object RESULT =null;
 
@@ -256,7 +264,7 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 9: // SENTENCIAPART ::= ELIMINARCARA PARIZQ LETRA PARDER 
+          case 9: // SENTENCIAPART ::= ELIMINARCARA PARIZQ IDENTIFICADOR PARDER 
             {
               Object RESULT =null;
 
@@ -265,11 +273,56 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 10: // SENTENCIAPART ::= CAMBIARMODO PARIZQ IDENTIFICADOR COMA LETRA PARDER 
+          case 10: // SENTENCIAPART ::= CAMBIARMODO PARIZQ IDENTIFICADOR COMA MODO PARDER 
             {
               Object RESULT =null;
 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("SENTENCIAPART",2, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-5)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 11: // MODO ::= FELIZ 
+            {
+              Object RESULT =null;
+
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("MODO",5, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 12: // MODO ::= ENOJADA 
+            {
+              Object RESULT =null;
+
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("MODO",5, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 13: // MODO ::= TRISTE 
+            {
+              Object RESULT =null;
+
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("MODO",5, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 14: // MODO ::= DORMIDA 
+            {
+              Object RESULT =null;
+
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("MODO",5, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 15: // MODO ::= NEUTRAL 
+            {
+              Object RESULT =null;
+
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("MODO",5, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 

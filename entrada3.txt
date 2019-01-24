@@ -1,6 +1,4 @@
-Programa ndk1
-Inicio
+ ndk1
 DibujarCara(5,5,5,ds,feliz)
 DibujarCara(5,5,5,ds,feliz)
 Dormir(3)
-Fin
