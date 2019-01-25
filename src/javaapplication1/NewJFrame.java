@@ -297,9 +297,9 @@ public class NewJFrame extends javax.swing.JFrame {
         g.fillRect(20, 50, 720, 465);
         g.setColor(Color.black);
         for(int i=0; i<lista.size(); i++){
-            boolean bN = buscarNombre(lista.get(i).get_NombreCara());
-            System.out.println(bN + " Inst: " + lista.get(i).getInst());
-            if(lista.get(i).getInst().equals("DibujarCara") && bN){
+            //boolean bN = buscarNombre(lista.get(i).get_NombreCara());
+            System.out.println(" Inst: " + lista.get(i).getInst());
+            if(lista.get(i).getInst().equals("DibujarCara") && !lista.get(i).getEliminado()){
                 int x = lista.get(i).get_x()+20;
                 int y = lista.get(i).get_y()+50;
                 int r = lista.get(i).get_radio();
@@ -416,8 +416,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 g.setColor(Color.white);
                 g.fillRect((x-r), (y-r), (r*2)+5, (r*2)+5);
                 g.setColor(Color.black);
-                EliminarObE(lista.get(i).get_NombreCara());
-                EliminarObD(lista.get(i).get_NombreCara());
+                EliminarObE(lista.get(i).get_NombreCara());                
             }else if(lista.get(i).getInst().equals("CambiarModo")){
                 Objeto n = BuscarCara(lista.get(i).get_NombreCara());
                 n.setModo(lista.get(i).get_Modo());
@@ -551,7 +550,7 @@ public class NewJFrame extends javax.swing.JFrame {
     }
     public Objeto BuscarCara(String nom){
         for(Objeto a : lista){
-            if(a.get_NombreCara().equals(nom)){
+            if(a.get_NombreCara().equals(nom) && !a.getEliminado()){
                 return a;
             }
         }
@@ -559,24 +558,34 @@ public class NewJFrame extends javax.swing.JFrame {
     }
     public void EliminarObE(String nom){
         iter = lista.iterator();
+        boolean df =false;
+        boolean d =false;
         while(iter.hasNext()){
             Objeto e = iter.next();
-            if(e.get_NombreCara().equals(nom) && e.getInst().equals("ElimicarCara")){
-                iter.remove();
+            if(e.get_NombreCara().equals(nom) && e.getInst().equals("EliminarCara")){
+                e.setEliminado();
+                d = true;
+            }else if(e.get_NombreCara().equals(nom) && e.getInst().equals("DibujarCara")){
+                e.setEliminado();
+                df = true;
+            }
+            if(d && df){
                 break;
             }
         }
     }
-    public void EliminarObD(String nom){
-        iter = lista.iterator();
-        while(iter.hasNext()){
-            Objeto e = iter.next();
+    /*public void EliminarObD(String nom){
+        System.out.println("HOLsda,,bfdskjbdaskjbdafskbfadskbkadfbkfdsldsbkjdfsbkadbskfskA");
+        iterador = lista.iterator();
+        while(iterador.hasNext()){
+            Objeto e = iterador.next();
             if(e.get_NombreCara().equals(nom) && e.getInst().equals("DibujarCara")){
-                iter.remove();
+                iterador.remove();
                 break;
             }
         }
-    }
+        //allPeople2();
+    }*/
     static public void ingresarLista(Objeto ob){
         lista.add(ob);
     }
