@@ -45,4 +45,10 @@ public class Objeto {
     public String getInst(){
         return instruccion;
     }
+    public int getSegundos(){
+        return segundos;
+    }
+    public void setModo(String NuevoModo){
+        modo = NuevoModo;
+    }
 }

@@ -31,27 +31,9 @@ public class JavaApplication1 {
    
     static NewJFrame j = new NewJFrame();
     public static void cambiarError(String f){      
-        //System.out.println("Valor de f:  " + f);
+        System.out.println("Valor de f:  " + f);
         error = f;
         //j.setText();
-    }
-    public static void DibujarCara(){
-            System.out.println("HOLA; DUBJU");
-    }
-    public static void Dormir(){
-        if(correcto){
-            System.out.println("HOLA; Dormir");
-        }
-    }
-    public static void CambiarModo(){
-        if(correcto){
-            System.out.println("HOLA; Cambiar Modo");
-        }
-    }
-    public static void EliminarCara(){
-        if(correcto){
-            System.out.println("HOLA; Eliminar Cara");
-        }
     }
     JavaApplication1(){
         
@@ -90,7 +72,8 @@ public class JavaApplication1 {
     public void semantico() throws FileNotFoundException{
         if(lex && cup){
             archivoModificado();
-            error = "Scaneo Completo";            
+          //  error = "Scaneo Completo";            
+          error= ""+Cara.mensaje;
             String path;
             Yylex ThisScanner1;
             parser ThisParser1;
@@ -124,8 +107,13 @@ public class JavaApplication1 {
             String s;
             BufferedReader br = new BufferedReader(fr);
             while ((line = br.readLine()) != null) {
+                if(line.contains(" ")){
+                    line = line.replace(" ", "");
+                }
+                if(line.contains("\t")){
+                    line = line.replace("\t", "");
+                }
                 if(line.contains("Programa")){
-                    System.out.println("PRograma");
                     line = line.replace("Programa", "");
                 }
                 if(line.contains("Inicio")){
@@ -161,7 +149,6 @@ public class JavaApplication1 {
                     int j = 0;
                     int length = tokens.countTokens();
                     String ins="";
-                    System.out.println("Hola: " + length);
                     if(length == 6){
                         int e = 0;
                         String[] array = new String[6];
@@ -187,7 +174,7 @@ public class JavaApplication1 {
                         String instruccion = array[0];
                         String nomCara = array[1];
                         String modo = array[2];
-                        Cara.CambiarModo(instruccion,nomCara, modo);
+                        c.CambiarModo(instruccion,nomCara, modo);
                     }else if(length == 2){
                         int e = 0;
                         String[] array = new String[2];
@@ -198,13 +185,11 @@ public class JavaApplication1 {
                         if(array[0].equals("EliminarCara")){
                             String instruccion = array[0];                            
                             String nomCara = array[1];
-                            System.out.println(instruccion);
-                            System.out.println(nomCara);
-                            Cara.EliminarCara(instruccion, nomCara);
+                            c.EliminarCara(instruccion, nomCara);
                         }else{
                             String instruccion = array[0];
                             int segundos = Integer.parseInt(array[1]);
-                            Cara.Dormir(instruccion, segundos);
+                            c.Dormir(instruccion, segundos);
                         }
                     }
                 }
@@ -213,7 +198,6 @@ public class JavaApplication1 {
         } catch (IOException ex) {
             Logger.getLogger(JavaApplication1.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Cara.allPeople();
     }
     
    

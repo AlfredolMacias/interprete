@@ -6,10 +6,15 @@
 package JavaApplication1;
 
 
+import static JavaApplication1.Cara.lista;
 import analizadores.Yylex;
 import analizadores.parser;
 import analizadores.parser;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.TextArea;
+import java.awt.geom.QuadCurve2D;
 import java.beans.PropertyChangeEvent;
 import java.io.*;
 import java.io.BufferedWriter;
@@ -17,11 +22,15 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-
+import JavaApplication1.Cara;
+import java.awt.Color;
+import javax.swing.Timer;
 
 
 /**
@@ -29,15 +38,27 @@ import javax.swing.JOptionPane;
  * @author Fredy-pc
  */
 public class NewJFrame extends javax.swing.JFrame {
-
+    private String error;
+     ArrayList<Carita> carita = new ArrayList<Carita>();
+     Iterator<Objeto> iter;
+     Iterator<Objeto> iterador;
+    static ArrayList<Objeto> lista = new ArrayList<Objeto>();
+    int delay = 1000;
+    Timer timer = new Timer(delay, null);
     /**
      * Creates new form NewJFrame
      */
+    boolean check = true;
     public NewJFrame() {
         initComponents();
-        
     }
-
+    
+    void getTextArea1(String r){
+        textArea1.setText(r);
+    }
+    public void main(){
+        repaint();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,6 +74,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         textArea3 = new java.awt.TextArea();
         textArea1 = new java.awt.TextArea();
+        jButton4 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -74,7 +96,7 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Interpretar");
+        jButton2.setText("Revisar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -85,6 +107,13 @@ public class NewJFrame extends javax.swing.JFrame {
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Ejecutar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -100,11 +129,13 @@ public class NewJFrame extends javax.swing.JFrame {
                         .addGap(727, 727, 727)
                         .addComponent(textArea3, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1)
-                        .addGap(73, 73, 73)
+                        .addGap(58, 58, 58)
                         .addComponent(jButton2)
-                        .addGap(83, 83, 83)
+                        .addGap(40, 40, 40)
+                        .addComponent(jButton4)
+                        .addGap(35, 35, 35)
                         .addComponent(jButton3)))
                 .addContainerGap())
         );
@@ -112,11 +143,11 @@ public class NewJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton3)
-                        .addComponent(jButton2))
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1)
+                    .addComponent(jButton4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textArea3, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -133,22 +164,25 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        textArea1.setText(null);
+        textArea1.setText("");        
         guardar();
         try {
             new JavaApplication1(0);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //allPeople();
+        //carita.add(new Carita(50,40,29,"Alfredo",1));
+        allPeople2();    
+        
+        
+        repaint();
         setText();
     }//GEN-LAST:event_jButton2ActionPerformed
     
     JavaApplication1 j = new JavaApplication1();
      void setText(){
         String error = j.error();
-        //System.out.println("ERROR: " + error);
-        //Thread.sleep(3000);
-        System.out.println(error);
         textArea1.setText(error + " \n");
         
     }
@@ -161,6 +195,18 @@ public class NewJFrame extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
+    private void newButton(){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        setText();
+    }
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        setText();
+    }//GEN-LAST:event_jButton4ActionPerformed
  
     /**
      * @param args the command line arguments
@@ -243,14 +289,389 @@ public class NewJFrame extends javax.swing.JFrame {
         }
       
   }
-
-  
+  @Override
+    public void paint(Graphics g){
+        Graphics2D g2d = (Graphics2D) g;
+        super.paint(g);
+        g.setColor(Color.white);
+        g.fillRect(20, 50, 720, 465);
+        g.setColor(Color.black);
+        for(int i=0; i<lista.size(); i++){
+            boolean bN = buscarNombre(lista.get(i).get_NombreCara());
+            System.out.println(bN + " Inst: " + lista.get(i).getInst());
+            if(lista.get(i).getInst().equals("DibujarCara") && bN){
+                int x = lista.get(i).get_x()+20;
+                int y = lista.get(i).get_y()+50;
+                int r = lista.get(i).get_radio();
+                String nom = lista.get(i).get_NombreCara();
+                String type = lista.get(i).get_Modo();
+                if(((x-r)-20) >=0 && ((y-r)-50) >=0 && (((x+r)-20) <= 700 && ((y+r)-50) <= 400)){
+                int x2 = (x-r)+(r*45)/100;
+                int y2 = (y-r)+(r*50)/100;
+                int x3 = (x-r)+(r*120)/100;
+                int xN = (x-r)+(r*80)/100;
+                int yN = (y-r)+(r*25)/100;
+                int r2 = (r*40)/100;
+                g.drawOval(x-r,y-r,r*2,r*2);
+                g.setFont(new Font("TimesRoman", Font.PLAIN, ((r*15)/100)));
+                switch(type){
+                    // Feliz
+                    case "feliz":
+                        g.fillOval(x2,y2,r2,r2);
+                        g.fillOval(x3,y2,r2,r2);
+                        g.drawString(nom, xN, yN);
+                        int xBF1 = (x-r)+(r*50)/100;
+                        int yBF1 = (y-r)+(r*120)/100;
+                        int xBF2 = x;
+                        int yBF2 = (y-r)+(r*170)/100;
+                        int xBF3 = (x-r)+(r*150)/100;
+                        QuadCurve2D bocaF1 = new QuadCurve2D.Float(xBF1, yBF1, xBF2, yBF2, xBF3, yBF1);
+                        g2d.draw(bocaF1);
+                        g2d.fill(bocaF1);
+                        break;
+                    // Triste
+                    case "triste":
+                        g.fillOval(x2,y2,r2,r2);
+                        g.fillOval(x3, y2, r2, r2);
+                        g.drawString(nom, xN, yN);
+                        int xBT1 = (x-r)+(r*50)/100;
+                        int yBT1 = (y-r)+(r*150)/100;
+                        int xBT2 = x;
+                        int yBT2 = (y-r)+(r*100)/100;
+                        int xBT3 = (x-r)+(r*150)/100;
+                        QuadCurve2D bocaT1 = new QuadCurve2D.Float(xBT1, yBT1, xBT2, yBT2, xBT3, yBT1);
+                        g2d.draw(bocaT1);
+                        g2d.fill(bocaT1);
+                        break;
+                    // Enojado
+                    case "enojada":
+                        int yNE = (y-r)+(r*35)/100;
+                        g.drawString(nom, xN, yNE);
+                        int yBE1 = (y-r)+(r*60)/100;
+                        int xBE1 = (x-r)+(r*65)/100;
+                        int yBE2 = y;
+                        int xBE2 = (x-r)+(r*95)/100;
+                        int yBE3 = (y-r)+(r*80)/100;
+                        QuadCurve2D ojoE1 = new QuadCurve2D.Float(x2, yBE1, xBE1, yBE2, xBE2, yBE3);
+                        g2d.draw(ojoE1);
+                        g2d.fill(ojoE1);
+                        int xBE3 = (x-r)+(r*110)/100;
+                        int xBE4 = (x-r)+(r*140)/100;
+                        int xBE5 = (x-r)+(r*160)/100;
+                        QuadCurve2D ojoE2 = new QuadCurve2D.Float(xBE3, yBE3, xBE4, yBE2, xBE5, yBE1);
+                        g2d.draw(ojoE2);
+                        g2d.fill(ojoE2);
+                        int xBE6 = (x-r)+(r*50)/100;
+                        int yBE4 = (y-r)+(r*150)/100;
+                        int xBE7 = x;
+                        int yBE5 = (y-r)+(r*100)/100;
+                        int xBE8 = (x-r)+(r*150)/100;
+                        QuadCurve2D bocaE1 = new QuadCurve2D.Float(xBE6, yBE4, xBE7, yBE5, xBE8, yBE4);
+                        g2d.draw(bocaE1);
+                        g2d.fill(bocaE1);
+                        break;
+                    // Dormido
+                    case "dormida":
+                        int yND = (y-r)+(r*35)/100;
+                        g.drawString(nom, xN, yND);
+                        int yBD1 = (y-r)+(r*60)/100;
+                        int xBD1 = (x-r)+(r*70)/100;
+                        int yBD2 = y;
+                        int xBD2 = (x-r)+(r*95)/100;
+                        QuadCurve2D ojoD1 = new QuadCurve2D.Float(x2, yBD1, xBD1, yBD2, xBD2, yBD1);
+                        g2d.draw(ojoD1);
+                        g2d.fill(ojoD1);
+                        int xBD3 = (x-r)+(r*110)/100;
+                        int xBD4 = (x-r)+(r*135)/100;
+                        int xBD5 = (x-r)+(r*160)/100;
+                        QuadCurve2D ojoD2 = new QuadCurve2D.Float(xBD3, yBD1, xBD4, yBD2, xBD5, yBD1);
+                        g2d.draw(ojoD2);
+                        g2d.fill(ojoD2);
+                        int xBD6 = (x-r)+(r*80)/100;
+                        int yBD4 = (y-r)+(r*120)/100;
+                        int rBD1 = (r*40)/100;
+                        g.fillOval(xBD6,yBD4,rBD1,rBD1);
+                        break;
+                    // Neutral
+                    case "neutral":
+                        g.fillOval(x2,y2,r2,r2);
+                        g.fillOval(x3,y2, r2, r2);
+                        g.drawString(nom, xN, yN);
+                        int xBN1 = (x-r)+(r*50)/100;
+                        int yBN1 = (y-r)+(r*140)/100;
+                        g.fillRect(xBN1,yBN1,r,((r*10)/100));
+                        break;
+                    default:
+                        break;
+                }
+                }else{
+                    System.out.println("Las Dimensiones de la figura exceden las dimensiones del Canvas");
+                    System.exit(0);
+                }
+            }else if(lista.get(i).getInst().equals("EliminarCara")){
+                Objeto n = BuscarCara(lista.get(i).get_NombreCara());
+                int x = n.get_x()+20;
+                int y = n.get_y()+50;
+                int r = n.get_radio();
+                g.setColor(Color.white);
+                g.fillRect((x-r), (y-r), (r*2)+5, (r*2)+5);
+                g.setColor(Color.black);
+                EliminarObE(lista.get(i).get_NombreCara());
+                EliminarObD(lista.get(i).get_NombreCara());
+            }else if(lista.get(i).getInst().equals("CambiarModo")){
+                Objeto n = BuscarCara(lista.get(i).get_NombreCara());
+                n.setModo(lista.get(i).get_Modo());
+                
+                int x = n.get_x()+20;
+                int y = n.get_y()+50;
+                int r = n.get_radio();
+                g.setColor(Color.white);
+                g.fillRect((x-r), (y-r), (r*2), (r*2));
+                g.setColor(Color.black);
+                
+                int nx = x;
+                int ny = y;
+                int nr = r;
+                String nom = lista.get(i).get_NombreCara();
+                String type = lista.get(i).get_Modo();
+                if(((nx-nr)-20) >=0 && ((ny-nr)-50) >=0 && (((nx+nr)-20) <= 700 && ((ny+nr)-50) <= 400)){
+                int x2 = (nx-nr)+(nr*45)/100;
+                int y2 = (ny-nr)+(nr*50)/100;
+                int x3 = (nx-nr)+(nr*120)/100;
+                int xN = (nx-nr)+(nr*80)/100;
+                int yN = (ny-nr)+(nr*25)/100;
+                int r2 = (nr*40)/100;
+                g.drawOval(nx-nr,ny-nr,nr*2,nr*2);
+                g.setFont(new Font("TimesRoman", Font.PLAIN, ((nr*15)/100)));
+                switch(type){
+                    // Feliz
+                    case "feliz":
+                        g.fillOval(x2,y2,r2,r2);
+                        g.fillOval(x3,y2,r2,r2);
+                        g.drawString(nom, xN, yN);
+                        int xBF1 = (nx-nr)+(nr*50)/100;
+                        int yBF1 = (ny-nr)+(nr*120)/100;
+                        int xBF2 = nx;
+                        int yBF2 = (ny-nr)+(nr*170)/100;
+                        int xBF3 = (nx-nr)+(nr*150)/100;
+                        QuadCurve2D bocaF1 = new QuadCurve2D.Float(xBF1, yBF1, xBF2, yBF2, xBF3, yBF1);
+                        g2d.draw(bocaF1);
+                        g2d.fill(bocaF1);
+                        break;
+                    // Triste
+                    case "triste":
+                        g.fillOval(x2,y2,r2,r2);
+                        g.fillOval(x3, y2, r2, r2);
+                        g.drawString(nom, xN, yN);
+                        int xBT1 = (nx-nr)+(nr*50)/100;
+                        int yBT1 = (ny-nr)+(nr*150)/100;
+                        int xBT2 = nx;
+                        int yBT2 = (ny-nr)+(nr*100)/100;
+                        int xBT3 = (nx-nr)+(nr*150)/100;
+                        QuadCurve2D bocaT1 = new QuadCurve2D.Float(xBT1, yBT1, xBT2, yBT2, xBT3, yBT1);
+                        g2d.draw(bocaT1);
+                        g2d.fill(bocaT1);
+                        break;
+                    // Enojado
+                    case "enojada":
+                        int yNE = (ny-nr)+(nr*35)/100;
+                        g.drawString(nom, xN, yNE);
+                        int yBE1 = (ny-nr)+(nr*60)/100;
+                        int xBE1 = (nx-nr)+(nr*65)/100;
+                        int yBE2 = ny;
+                        int xBE2 = (nx-nr)+(nr*95)/100;
+                        int yBE3 = (ny-nr)+(nr*80)/100;
+                        QuadCurve2D ojoE1 = new QuadCurve2D.Float(x2, yBE1, xBE1, yBE2, xBE2, yBE3);
+                        g2d.draw(ojoE1);
+                        g2d.fill(ojoE1);
+                        int xBE3 = (nx-nr)+(nr*110)/100;
+                        int xBE4 = (nx-nr)+(nr*140)/100;
+                        int xBE5 = (nx-nr)+(nr*160)/100;
+                        QuadCurve2D ojoE2 = new QuadCurve2D.Float(xBE3, yBE3, xBE4, yBE2, xBE5, yBE1);
+                        g2d.draw(ojoE2);
+                        g2d.fill(ojoE2);
+                        int xBE6 = (nx-nr)+(nr*50)/100;
+                        int yBE4 = (ny-nr)+(nr*150)/100;
+                        int xBE7 = nx;
+                        int yBE5 = (ny-nr)+(nr*100)/100;
+                        int xBE8 = (nx-nr)+(nr*150)/100;
+                        QuadCurve2D bocaE1 = new QuadCurve2D.Float(xBE6, yBE4, xBE7, yBE5, xBE8, yBE4);
+                        g2d.draw(bocaE1);
+                        g2d.fill(bocaE1);
+                        break;
+                    // Dormido
+                    case "dormida":
+                        int yND = (ny-nr)+(nr*35)/100;
+                        g.drawString(nom, xN, yND);
+                        int yBD1 = (ny-nr)+(nr*60)/100;
+                        int xBD1 = (nx-nr)+(nr*70)/100;
+                        int yBD2 = ny;
+                        int xBD2 = (nx-nr)+(nr*95)/100;
+                        QuadCurve2D ojoD1 = new QuadCurve2D.Float(x2, yBD1, xBD1, yBD2, xBD2, yBD1);
+                        g2d.draw(ojoD1);
+                        g2d.fill(ojoD1);
+                        int xBD3 = (nx-nr)+(nr*110)/100;
+                        int xBD4 = (nx-nr)+(nr*135)/100;
+                        int xBD5 = (nx-nr)+(nr*160)/100;
+                        QuadCurve2D ojoD2 = new QuadCurve2D.Float(xBD3, yBD1, xBD4, yBD2, xBD5, yBD1);
+                        g2d.draw(ojoD2);
+                        g2d.fill(ojoD2);
+                        int xBD6 = (nx-nr)+(nr*80)/100;
+                        int yBD4 = (ny-nr)+(nr*120)/100;
+                        int rBD1 = (nr*40)/100;
+                        g.fillOval(xBD6,yBD4,rBD1,rBD1);
+                        break;
+                    // Neutral
+                    case "neutral":
+                        g.fillOval(x2,y2,r2,r2);
+                        g.fillOval(x3,y2, r2, r2);
+                        g.drawString(nom, xN, yN);
+                        int xBN1 = (nx-nr)+(nr*50)/100;
+                        int yBN1 = (ny-nr)+(nr*140)/100;
+                        g.fillRect(xBN1,yBN1,nr,((nr*10)/100));
+                        break;
+                    default:
+                        break;
+                }
+                }else{
+                    System.out.println("Las Dimensiones de la figura exceden las dimensiones del Canvas");
+                    System.exit(0);
+                }
+                
+            }else if(lista.get(i).getInst().equals("Dormir")){
+                try {
+                    Thread.sleep(lista.get(i).getSegundos()*1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        carita.clear();
+        lista.clear();
+    }
+    public Objeto BuscarCara(String nom){
+        for(Objeto a : lista){
+            if(a.get_NombreCara().equals(nom)){
+                return a;
+            }
+        }
+        return null;
+    }
+    public void EliminarObE(String nom){
+        iter = lista.iterator();
+        while(iter.hasNext()){
+            Objeto e = iter.next();
+            if(e.get_NombreCara().equals(nom) && e.getInst().equals("ElimicarCara")){
+                iter.remove();
+                break;
+            }
+        }
+    }
+    public void EliminarObD(String nom){
+        iter = lista.iterator();
+        while(iter.hasNext()){
+            Objeto e = iter.next();
+            if(e.get_NombreCara().equals(nom) && e.getInst().equals("DibujarCara")){
+                iter.remove();
+                break;
+            }
+        }
+    }
+    static public void ingresarLista(Objeto ob){
+        lista.add(ob);
+    }
+    /*public  void allPeople() {
+        for(Objeto a: lista) {
+            if(a.getInst().equals("DibujarCara")){
+                int type = 0;
+                switch(a.get_Modo()){
+                    case "feliz":
+                        type = 1;
+                        break;
+                    case "triste":
+                        type = 2;
+                        break;
+                    case "enojada":
+                        type = 3;
+                        break;
+                    case "dormida":
+                        type = 4;
+                        break;
+                    case "neutral":
+                        type = 5;
+                        break;
+                }
+                DibujarCara(a.get_x(),a.get_y(),a.get_radio(),a.get_NombreCara(),type,0);
+                
+            }else if(a.getInst().equals("CambiarModo")){
+                System.out.println("CambiarModo");
+                CambiarModo(a.get_NombreCara(), a.get_Modo());
+            }else if(a.getInst().equals("EliminarCara")){
+                System.out.println("ElimincarCara");
+                EliminarCara(a.get_NombreCara());
+            }else if(a.getInst().equals("Dormir")){
+                DibujarCara(0,0,0,"",0,a.getSegundos());
+                
+            }
+         }
+    }*/
+    public void DibujarCara(int x, int y, int radio, String nom, int type, int segundos){
+        carita.add(new Carita(x,y,radio,nom,type,segundos));
+        if(segundos != 0){
+            try {
+                Thread.sleep(segundos*1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        System.out.println("DibujarCara");
+        timer.start();
+    }
+    /*public void EliminarCara(String id){
+        iter = carita.iterator();
+        while(iter.hasNext()){
+            Carita e = iter.next();
+            if(e.getNom().equals(id)){
+                iter.remove();
+            }
+        }
+    }
+    public void CambiarModo(String id, String NuevoModo){
+        iter = carita.iterator();
+        while(iter.hasNext()){
+            Carita e = iter.next();
+            if(e.getNom().equals(id)){
+                
+                e.CambiarModo(NuevoModo);
+            }
+        }     
+        
+    }*/
+    public boolean buscarNombre(String nombre){
+        System.out.println("BUSCAR NOMBRE-----------");
+        for(Objeto a: lista){
+            System.out.println("Instruccion: " + a.getInst() + "   Nombre " + a.get_NombreCara());
+            if(a.get_NombreCara().equals(nombre) && a.getInst().equals("DibujarCara")){
+                return true;
+            }
+        }
+        return false;
+    }
+    public void allPeople2(){
+        for(Objeto a: lista){
+            System.out.println("Instr: " + a.getInst());
+        }
+           System.out.println("----------------------");
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JFrame jFrame1;
     private java.awt.TextArea textArea1;
     private java.awt.TextArea textArea3;
     // End of variables declaration//GEN-END:variables
+
 }

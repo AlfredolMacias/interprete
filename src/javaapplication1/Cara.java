@@ -6,30 +6,39 @@
 package JavaApplication1;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Fredy-pc
  */
 public class Cara {
     //Objeto objeto = new Objeto();
-   
+    static String mensaje="";
     static ArrayList<Objeto> lista ;
+    ArrayList<Carita> carita;
     public Cara(){
         lista = new ArrayList<Objeto>();
         //lista =  new ArrayList<Objeto>();
     }
+    private boolean existe;
+    /*private NewJFrame NewJFrame;
+    public Cara(final NewJFrame NewJFrame) {
+        this.NewJFrame = NewJFrame;
+    }*/
+    
     public void DibujarCara(String instruccion, int x, int y, int radio, String nomCara, String modo){
-        boolean existe = false;
+        existe = false;
         boolean se_sale = false;
         boolean choca = false;
-        if((x - radio) < 0 || (y-radio) < 0 ){
+        if((x - radio) < 0 || (y-radio) < 0 || (x + radio) >700 || (y + radio) > 400){
                 System.out.println("X: " + x + "Y: " + y + "Radio: + radio");
                 se_sale = true;
         }
         for(Objeto a: lista){
-            if(a.get_NombreCara().equals(nomCara)){
-                existe = true;
-            }
             if(a.getInst().equals("DibujarCara")){
                 int x1 = a.get_x()-a.get_radio();
                 int y1 = a.get_y()-a.get_radio();
@@ -40,10 +49,6 @@ public class Cara {
                 int ny1 = y - radio;
                 int nx2 = x + radio;
                 int ny2 = y + radio;
-                
-                System.out.println("SI Entro");
-                System.out.println("X: " + x + " Y; " + y + "Radio: " + radio);
-                System.out.println("L1: " + x1 + " L2; " + x2 + " R1: " + y1 + " R2: " +y2);
                 if((nx1 >= x1 && nx1 <= x2 && ny1 >= y1 && ny1 <= y2) ||
                         (nx1 >= x1 && nx1 <= x2 && ny2 >= y1 && ny2 <= y2) ||
                         (nx2 >= x1 && nx2 <= x2 && ny2 >= y1 && ny2 <= y2) ||
@@ -53,22 +58,23 @@ public class Cara {
                 }
         }
         
-        if(existe){
-            System.out.println("Error, la cara " + nomCara + " ya existe");
-            imprimir("Error, la cara " + nomCara + " ya existe");
-        }else if(se_sale){
+        if(se_sale){
             System.out.println("Error, la cara está fuera del limite");
-        }else if(choca){
-            System.out.println("Error, la cara choca con otra existente");
+          mensaje= "Error, la cara está fuera del limite";
         }else{
             Objeto n = new Objeto(instruccion, x, y, radio, nomCara, modo, 0);
-           lista.add(n);       
+            NewJFrame.ingresarLista(n);
+           lista.add(n);
         }
     } 
-    NewJFrame jFrame = new NewJFrame();
     private void imprimir(String j) {
        JavaApplication1.cambiarError(j);
-       jFrame.setText();
+       try{
+           
+       }catch(Exception e){
+           System.out.println("Error" + e);
+       }
+       
     }
     
     public static void EliminarCara(String instruccion, String nomCara){
@@ -79,9 +85,13 @@ public class Cara {
             }
         }
         if(existe){
-            lista.add(new Objeto(instruccion,0,0,0, nomCara,"", 0));
+            Objeto n = new Objeto(instruccion,0,0,0, nomCara,"", 0);
+            lista.add(n);
+            NewJFrame.ingresarLista(n);
         }else{
             System.out.println("Error, la cara " + nomCara + " no existe");
+           // JOptionPane.showMessageDialog(null, "Error, la cara " + nomCara + " no existe",  "Error", JOptionPane.INFORMATION_MESSAGE);
+           mensaje= "Error, la cara " + nomCara + " no existe";
         }
         
     }
@@ -94,23 +104,19 @@ public class Cara {
         }
         if(existe){
               Objeto n = new Objeto(instruccion, 0,0,0, nomCara, modo, 0);
-                lista.add(n);        
-               //imprimir("Error, la cara " + nomCara + " ya existe");
+              lista.add(n);
+              NewJFrame.ingresarLista(n);
+          
             }else{
-            //System.out.println("SI Entro");
+       
             System.out.println("Error, la cara " + nomCara + " no existe");
+            mensaje="Error, la cara " + nomCara + " no existe";
             }
         lista.add(new Objeto(instruccion, 0,0,0, nomCara, modo,0));
     }
     public static void Dormir(String instruccion, int segundos){
-        lista.add(new Objeto(instruccion,0,0,0,"","", segundos));
-    }
-    public static void allPeople() {
-        for(Objeto a: lista) {
-            System.out.println(a.getInst());
-        }
-    }
-    public static void buscarNom(){
-        
+        Objeto n = new Objeto(instruccion,0,0,0,"","", segundos);
+        lista.add(n);
+        NewJFrame.ingresarLista(n);
     }
 }
