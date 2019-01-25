@@ -1,9 +1,7 @@
-primer
-DibujarCara(30,30,20,Caro,enojada)
-DibujarCara(50,100,20,Manuel,feliz)
-Dormir(2)
-EliminarCara(Caro)
+ejemploDos
+DibujarCara(40,30,25,Miguel,triste)
 Dormir(3)
-DibujarCara(70,50,20,Alvarado,triste)
+CambiarModo(Miguel,feliz)
+DibujarCara(80,150,50,Carmen,neutral)
 Dormir(2)
-CambiarModo(Alvarado,dormida)
+EliminarCara(Carmen)

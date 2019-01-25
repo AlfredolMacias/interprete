@@ -62,7 +62,7 @@ public class Cara {
             System.out.println("Error, la cara está fuera del limite");
           mensaje= "Error, la cara está fuera del limite";
         }else{
-            Objeto n = new Objeto(instruccion, x, y, radio, nomCara, modo, 0);
+            Objeto n = new Objeto(instruccion, x, y, radio, nomCara, modo, 0, false);
             NewJFrame.ingresarLista(n);
            lista.add(n);
         }
@@ -85,7 +85,7 @@ public class Cara {
             }
         }
         if(existe){
-            Objeto n = new Objeto(instruccion,0,0,0, nomCara,"", 0);
+            Objeto n = new Objeto(instruccion,0,0,0, nomCara,"", 0, false);
             lista.add(n);
             NewJFrame.ingresarLista(n);
         }else{
@@ -103,7 +103,7 @@ public class Cara {
             }
         }
         if(existe){
-              Objeto n = new Objeto(instruccion, 0,0,0, nomCara, modo, 0);
+              Objeto n = new Objeto(instruccion, 0,0,0, nomCara, modo, 0, false);
               lista.add(n);
               NewJFrame.ingresarLista(n);
           
@@ -112,10 +112,10 @@ public class Cara {
             System.out.println("Error, la cara " + nomCara + " no existe");
             mensaje="Error, la cara " + nomCara + " no existe";
             }
-        lista.add(new Objeto(instruccion, 0,0,0, nomCara, modo,0));
+        lista.add(new Objeto(instruccion, 0,0,0, nomCara, modo,0, true));
     }
     public static void Dormir(String instruccion, int segundos){
-        Objeto n = new Objeto(instruccion,0,0,0,"","", segundos);
+        Objeto n = new Objeto(instruccion,0,0,0,"","", segundos, false);
         lista.add(n);
         NewJFrame.ingresarLista(n);
     }

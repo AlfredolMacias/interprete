@@ -17,8 +17,9 @@ public class Objeto {
     private String instruccion;
     private String modo;
     private int segundos;    
+    private boolean eliminado;
     
-    Objeto(String instruccion,int x, int y, int radio, String nomCara, String modo, int segundos){
+    Objeto(String instruccion,int x, int y, int radio, String nomCara, String modo, int segundos, boolean eliminado){
         this.instruccion = instruccion;
         this.x = x;
         this.y = y;
@@ -26,6 +27,7 @@ public class Objeto {
         this.nomCara = nomCara;
         this.modo = modo;
         this.segundos = segundos;
+        this.eliminado = eliminado;
     }
     public int get_x(){
         return x;
@@ -50,5 +52,11 @@ public class Objeto {
     }
     public void setModo(String NuevoModo){
         modo = NuevoModo;
+    }
+    public void setEliminado(boolean el){
+        eliminado = el;
+    }
+    public boolean getEliminado(){
+        return eliminado;
     }
 }

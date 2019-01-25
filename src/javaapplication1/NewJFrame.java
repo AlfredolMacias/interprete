@@ -294,7 +294,8 @@ public class NewJFrame extends javax.swing.JFrame {
             System.out.println(" Inst: " + lista.get(i).getInst());
             boolean choca = choca(lista.get(i));
             System.out.println("Choca: hjknubfnobnonofi" + choca);
-            if(lista.get(i).getInst().equals("DibujarCara") && !lista.get(i).getEliminado() && !choca){
+            if(lista.get(i).getInst().equals("DibujarCara") && !choca){
+                lista.get(i).setEliminado(false);
                 int x = lista.get(i).get_x()+20;
                 int y = lista.get(i).get_y()+50;
                 int r = lista.get(i).get_radio();
@@ -558,10 +559,10 @@ public class NewJFrame extends javax.swing.JFrame {
         while(iter.hasNext()){
             Objeto e = iter.next();
             if(e.get_NombreCara().equals(nom) && e.getInst().equals("EliminarCara")){
-                e.setEliminado();
+                e.setEliminado(true);
                 d = true;
             }else if(e.get_NombreCara().equals(nom) && e.getInst().equals("DibujarCara")){
-                e.setEliminado();
+                e.setEliminado(true);
                 df = true;
             }
             if(d && df){
