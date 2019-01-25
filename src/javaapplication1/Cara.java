@@ -59,8 +59,12 @@ public class Cara {
         }
         
         if(se_sale){
-            System.out.println("Error, la cara está fuera del limite");
-          mensaje= "Error, la cara está fuera del limite";
+            System.out.println("Error, la cara..." + nomCara + " está fuera del limite");
+          mensaje= "Error, la cara " + nomCara +" está fuera del limite";
+        }else if(choca){
+            System.out.println("Error, la cara choca con otra existente");
+          
+            mensaje="Error, la cara "+ nomCara + " choca con otra existente";
         }else{
             Objeto n = new Objeto(instruccion, x, y, radio, nomCara, modo, 0, true);
             NewJFrame.ingresarLista(n);

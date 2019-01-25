@@ -1,7 +1,5 @@
 Programa ejemploDos
-Inicio EliminarCara(Miguel)
-DibujarCara(40, 30, 25, Miguel, triste) Dormir(3)
-CambiarModo(Miguel, feliz) DibujarCara
-(80, 150, 50, Carmen, neutral)
-Dormir ( 2)
-EliminarCara (Carmen) Fin
+Inicio
+DibujarCara(40, 30, 20, p2, feliz) 
+DibujarCara(40, 30, 25, p2, triste  ) 
+ Fin

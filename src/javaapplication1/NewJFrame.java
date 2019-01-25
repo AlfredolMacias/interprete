@@ -408,9 +408,11 @@ public class NewJFrame extends javax.swing.JFrame {
                 }       
                     }else{
                         System.out.println("Ese nombre ya existe");
+                        textArea1.setText("Ese nombre de cara ya existe");
                     }
                 }else{
                     System.out.println("Las Caras chocan");
+                    textArea1.setText("Las Caras chocan");
                 }
                 
             }else if(lista.get(i).getInst().equals("EliminarCara")){
