@@ -290,12 +290,14 @@ public class NewJFrame extends javax.swing.JFrame {
         g.fillRect(20, 50, 720, 465);
         g.setColor(Color.black);
         for(int i=0; i<lista.size(); i++){
-            //boolean bN = buscarNombre(lista.get(i).get_NombreCara());
+            boolean bN = buscarNombre(lista.get(i).get_NombreCara());
             System.out.println(" Inst: " + lista.get(i).getInst());
             boolean choca = choca(lista.get(i));
             System.out.println("Choca: hjknubfnobnonofi" + choca);
-            if(lista.get(i).getInst().equals("DibujarCara") && !choca){
-                lista.get(i).setEliminado(false);
+            if(lista.get(i).getInst().equals("DibujarCara")){
+                if(!choca){
+                    if(!bN){
+                     lista.get(i).setEliminado(false);
                 int x = lista.get(i).get_x()+20;
                 int y = lista.get(i).get_y()+50;
                 int r = lista.get(i).get_radio();
@@ -403,7 +405,14 @@ public class NewJFrame extends javax.swing.JFrame {
                 }else{
                     System.out.println("Las Dimensiones de la figura exceden las dimensiones del Canvas");
                     System.exit(0);
+                }       
+                    }else{
+                        System.out.println("Ese nombre ya existe");
+                    }
+                }else{
+                    System.out.println("Las Caras chocan");
                 }
+                
             }else if(lista.get(i).getInst().equals("EliminarCara")){
                 Objeto n = BuscarCara(lista.get(i).get_NombreCara());
                 int x = n.get_x()+20;
@@ -570,93 +579,15 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         }
     }
-    /*public void EliminarObD(String nom){
-        System.out.println("HOLsda,,bfdskjbdaskjbdafskbfadskbkadfbkfdsldsbkjdfsbkadbskfskA");
-        iterador = lista.iterator();
-        while(iterador.hasNext()){
-            Objeto e = iterador.next();
-            if(e.get_NombreCara().equals(nom) && e.getInst().equals("DibujarCara")){
-                iterador.remove();
-                break;
-            }
-        }
-        //allPeople2();
-    }*/
+   
     static public void ingresarLista(Objeto ob){
         lista.add(ob);
     }
-    /*public  void allPeople() {
-        for(Objeto a: lista) {
-            if(a.getInst().equals("DibujarCara")){
-                int type = 0;
-                switch(a.get_Modo()){
-                    case "feliz":
-                        type = 1;
-                        break;
-                    case "triste":
-                        type = 2;
-                        break;
-                    case "enojada":
-                        type = 3;
-                        break;
-                    case "dormida":
-                        type = 4;
-                        break;
-                    case "neutral":
-                        type = 5;
-                        break;
-                }
-                DibujarCara(a.get_x(),a.get_y(),a.get_radio(),a.get_NombreCara(),type,0);
-                
-            }else if(a.getInst().equals("CambiarModo")){
-                System.out.println("CambiarModo");
-                CambiarModo(a.get_NombreCara(), a.get_Modo());
-            }else if(a.getInst().equals("EliminarCara")){
-                System.out.println("ElimincarCara");
-                EliminarCara(a.get_NombreCara());
-            }else if(a.getInst().equals("Dormir")){
-                DibujarCara(0,0,0,"",0,a.getSegundos());
-                
-            }
-         }
-    }*/
-    public void DibujarCara(int x, int y, int radio, String nom, int type, int segundos){
-        carita.add(new Carita(x,y,radio,nom,type,segundos));
-        if(segundos != 0){
-            try {
-                Thread.sleep(segundos*1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        System.out.println("DibujarCara");
-        timer.start();
-    }
-    /*public void EliminarCara(String id){
-        iter = carita.iterator();
-        while(iter.hasNext()){
-            Carita e = iter.next();
-            if(e.getNom().equals(id)){
-                iter.remove();
-            }
-        }
-    }
-    public void CambiarModo(String id, String NuevoModo){
-        iter = carita.iterator();
-        while(iter.hasNext()){
-            Carita e = iter.next();
-            if(e.getNom().equals(id)){
-                
-                e.CambiarModo(NuevoModo);
-            }
-        }     
-        
-    }*/
     public boolean buscarNombre(String nombre){
         System.out.println("BUSCAR NOMBRE-----------");
         for(Objeto a: lista){
             System.out.println("Instruccion: " + a.getInst() + "   Nombre " + a.get_NombreCara());
-            if(a.get_NombreCara().equals(nombre) && a.getInst().equals("DibujarCara")){
+            if(a.get_NombreCara().equals(nombre) && a.getInst().equals("DibujarCara") && !a.getEliminado()){
                 return true;
             }
         }

@@ -62,7 +62,7 @@ public class Cara {
             System.out.println("Error, la cara está fuera del limite");
           mensaje= "Error, la cara está fuera del limite";
         }else{
-            Objeto n = new Objeto(instruccion, x, y, radio, nomCara, modo, 0, false);
+            Objeto n = new Objeto(instruccion, x, y, radio, nomCara, modo, 0, true);
             NewJFrame.ingresarLista(n);
            lista.add(n);
         }

@@ -1,4 +1,5 @@
 ejemploDos
+EliminarCara(Miguel)
 DibujarCara(40,30,25,Miguel,triste)
 Dormir(3)
 CambiarModo(Miguel,feliz)
