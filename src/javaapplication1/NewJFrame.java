@@ -1,11 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package JavaApplication1;
-
-
 import static JavaApplication1.Cara.lista;
 import analizadores.Yylex;
 import analizadores.parser;
@@ -299,7 +292,9 @@ public class NewJFrame extends javax.swing.JFrame {
         for(int i=0; i<lista.size(); i++){
             //boolean bN = buscarNombre(lista.get(i).get_NombreCara());
             System.out.println(" Inst: " + lista.get(i).getInst());
-            if(lista.get(i).getInst().equals("DibujarCara") && !lista.get(i).getEliminado()){
+            boolean choca = choca(lista.get(i));
+            System.out.println("Choca: hjknubfnobnonofi" + choca);
+            if(lista.get(i).getInst().equals("DibujarCara") && !lista.get(i).getEliminado() && !choca){
                 int x = lista.get(i).get_x()+20;
                 int y = lista.get(i).get_y()+50;
                 int r = lista.get(i).get_radio();
@@ -671,6 +666,37 @@ public class NewJFrame extends javax.swing.JFrame {
             System.out.println("Instr: " + a.getInst());
         }
            System.out.println("----------------------");
+    }
+    
+    public boolean choca(Objeto nuevo){
+        for(Objeto e : lista){
+            if(e.get_NombreCara().equals(nuevo.get_NombreCara())){
+                
+            }else{
+            if(e.getInst().equals("DibujarCara") && !e.getEliminado()){
+                int x1 = e.get_x()-e.get_radio();
+                int y1 = e.get_y()-e.get_radio(); 
+                int x2 = e.get_x()+e.get_radio(); 
+                int y2 = e.get_y()+e.get_radio();
+                
+                int nx1 = nuevo.get_x() - nuevo.get_radio();
+                int ny1 = nuevo.get_y() - nuevo.get_radio();
+                int nx2 = nuevo.get_x() + nuevo.get_radio();
+                int ny2 = nuevo.get_y() + nuevo.get_radio();
+                
+                System.out.println("x1: " + x1 + " x2: " + x2 + " y1: " + y1 + " y2: " + y2);
+                System.out.println("nx1: " + nx1 + " nx2: " + nx2 + " ny1: " + ny1 + " ny2: " + ny2);
+                
+                if((nx1 >= x1 && nx1 <= x2 && ny1 >= y1 && ny1 <= y2) ||
+                        (nx1 >= x1 && nx1 <= x2 && ny2 >= y1 && ny2 <= y2) ||
+                        (nx2 >= x1 && nx2 <= x2 && ny2 >= y1 && ny2 <= y2) ||
+                        (nx2 >= x1 && nx2 <= x2 && ny1 >= y1 && ny1 <= y2)){
+                        return true;
+                }
+            }
+        }
+        }
+        return false;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
